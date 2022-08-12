@@ -1,0 +1,42 @@
+@import "styles/settings/__settings";
+
+.description {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.posts {
+  // list-style: none;
+  // padding-left: 0;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  display: grid;
+  gap: 1rem;
+
+  // & > li {
+  //   margin: 1em 0;
+
+  //   &:first-child {
+  //     margin-top: 0;
+  //   }
+
+  //   &:last-child {
+  //     margin-bottom: 0;
+  //   }
+  // }
+}
+/* Screen larger than 600px? 2 column */
+@media (min-width: 600px) {
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 900px) {
+  .posts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
