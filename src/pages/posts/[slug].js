@@ -203,7 +203,7 @@ export async function getServerSideProps(context) {
   if (referral?.includes('facebook.com')) {
     // On the server, we'll use an HTTP response to
     // redirect with the status code of our choice.
-    // 307 is for temporary redirects.
+    // 307 is for temporary redirects...
     const targetURL = `${process.env.WORDPRESS_REDIRECT_DOMAIN}/${encodeURIComponent(context.params.slug)}/`;
     context.res.writeHead(307, { Location: targetURL });
     context.res.end();

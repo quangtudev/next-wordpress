@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\src",
+    "\\src\\pages",
+    "\\src\\pages\\posts",
+    "\\src\\pages\\posts\\page",
+    "\\src\\styles"
+  ],
+  "SelectedNode": "\\src\\pages\\posts\\[slug].js",
+  "PreviewInSolutionExplorer": false
+}
