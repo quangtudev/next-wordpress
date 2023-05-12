@@ -178,7 +178,7 @@ const Nav = () => {
     <nav className={styles.nav}>
       <Section className={styles.navSection}>
         <p className={styles.navName}>
-          <Link href="/">
+          <Link legacyBehavior href="/">
             <a>{title}</a>
           </Link>
         </p>
@@ -211,7 +211,7 @@ const Nav = () => {
                     {results.map(({ slug, title }, index) => {
                       return (
                         <li key={slug}>
-                          <Link tabIndex={index} href={postPathBySlug(slug)}>
+                          <Link legacyBehavior tabIndex={index} href={postPathBySlug(slug)}>
                             <a>{title}</a>
                           </Link>
                         </li>

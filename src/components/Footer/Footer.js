@@ -25,7 +25,7 @@ const Footer = () => {
             <ul className={styles.footerMenuColumns}>
               {hasRecentPosts && (
                 <li>
-                  <Link href="/posts/">
+                  <Link legacyBehavior href="/posts/">
                     <a className={styles.footerMenuTitle}>
                       <strong>Recent Posts</strong>
                     </a>
@@ -35,7 +35,7 @@ const Footer = () => {
                       const { id, slug, title } = post;
                       return (
                         <li key={id}>
-                          <Link href={postPathBySlug(slug)}>
+                          <Link legacyBehavior href={postPathBySlug(slug)}>
                             <a>{title}</a>
                           </Link>
                         </li>
@@ -46,7 +46,7 @@ const Footer = () => {
               )}
               {hasRecentCategories && (
                 <li>
-                  <Link href="/categories/">
+                  <Link legacyBehavior href="/categories/">
                     <a className={styles.footerMenuTitle}>
                       <strong>Categories</strong>
                     </a>
@@ -56,7 +56,7 @@ const Footer = () => {
                       const { id, slug, name } = category;
                       return (
                         <li key={id}>
-                          <Link href={categoryPathBySlug(slug)}>
+                          <Link legacyBehavior href={categoryPathBySlug(slug)}>
                             <a>{name}</a>
                           </Link>
                         </li>

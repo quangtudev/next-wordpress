@@ -48,14 +48,14 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
   return (
     <>
       <Helmet>
-        {addCanonical && !hasPreviousPage && <link rel="canonical" href={`${homepage}${basePath}`} />}
-        {hasPreviousPage && <link rel="prev" href={`${homepage}${path}${currentPage - 1}`} />}
-        {hasNextPage && <link rel="next" href={`${homepage}${path}${currentPage + 1}`} />}
+        {addCanonical && !hasPreviousPage && <link legacyBehavior rel="canonical" href={`${homepage}${basePath}`} />}
+        {hasPreviousPage && <link legacyBehavior rel="prev" href={`${homepage}${path}${currentPage - 1}`} />}
+        {hasNextPage && <link legacyBehavior rel="next" href={`${homepage}${path}${currentPage + 1}`} />}
       </Helmet>
 
       <nav className={styles.nav} role="navigation" aria-label="Pagination Navigation">
         {hasPreviousPage && (
-          <Link href={`${path}${currentPage - 1}`}>
+          <Link legacyBehavior href={`${path}${currentPage - 1}`}>
             <a className={styles.prev} aria-label="Goto Previous Page">
               <PreviousIcon /> Previous
             </a>
@@ -78,7 +78,7 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
               </li>
             ) : (
               <li key={page}>
-                <Link href={`${path}${page}`}>
+                <Link legacyBehavior href={`${path}${page}`}>
                   <a aria-label={`Goto Page ${page}`}>
                     <span>{page}</span>
                   </a>
@@ -94,7 +94,7 @@ const Pagination = ({ pagesCount, currentPage, basePath, addCanonical = true }) 
         </ul>
 
         {hasNextPage && (
-          <Link href={`${path}${currentPage + 1}`}>
+          <Link legacyBehavior href={`${path}${currentPage + 1}`}>
             <a className={styles.next} aria-label="Goto Next Page">
               Next <NextIcon />
             </a>
