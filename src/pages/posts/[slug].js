@@ -243,7 +243,7 @@ export async function getServerSideProps(context) {
     props,
   };
 }
-//redeploy1
+//redeploy
 
 // export async function getStaticPaths() {
 //   // Only render the most recent posts to avoid spending unecessary time
