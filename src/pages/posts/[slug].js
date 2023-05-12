@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Helmet } from 'react-helmet';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 import { getPostBySlug, getRelatedPosts, postPathBySlug } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
@@ -65,58 +65,58 @@ export default function Post({ post, related }) {
 
   const helmetSettings = helmetSettingsFromMetadata(metadata);
 
-  useEffect(() => {
-    if (process.env.MGID_IN_CONTENT_ID != undefined) {
-      // Insert ads to content
-      let contentWrapper = document.getElementById('content-wp'),
-        arr = [],
-        temp_index = 0;
-      contentWrapper.childNodes.forEach((el, el_index) => {
-        if (el.innerHTML != undefined) {
-          temp_index++;
-          if (temp_index % 5 == 0) {
-            arr.push(el_index);
-          }
-        }
-      });
+  // useEffect(() => {
+  //   if (process.env.MGID_IN_CONTENT_ID != undefined) {
+  //     // Insert ads to content
+  //     let contentWrapper = document.getElementById('content-wp'),
+  //       arr = [],
+  //       temp_index = 0;
+  //     contentWrapper.childNodes.forEach((el, el_index) => {
+  //       if (el.innerHTML != undefined) {
+  //         temp_index++;
+  //         if (temp_index % 5 == 0) {
+  //           arr.push(el_index);
+  //         }
+  //       }
+  //     });
 
-      document.querySelectorAll('.adsWrapper').forEach((el) => {
-        el.remove();
-      });
+  //     document.querySelectorAll('.adsWrapper').forEach((el) => {
+  //       el.remove();
+  //     });
 
-      arr.forEach((num) => {
-        let adsWrapper = document.createElement('div'),
-          ads = document.createElement('div'),
-          script = document.createElement('script');
+  //     arr.forEach((num) => {
+  //       let adsWrapper = document.createElement('div'),
+  //         ads = document.createElement('div'),
+  //         script = document.createElement('script');
 
-        adsWrapper.className = 'adsWrapper';
-        script.src = `https://jsc.mgid.com/n/b/${process.env.MGID_IN_CONTENT_SRC}.js`;
-        script.async = true;
-        ads.id = process.env.MGID_IN_CONTENT_ID;
-        adsWrapper.appendChild(ads);
-        adsWrapper.appendChild(script);
-        contentWrapper.insertBefore(adsWrapper, contentWrapper.childNodes[num]);
-      });
-    }
-    if (process.env.MGID_END_CONTENT_ID != undefined) {
-      // Insert ads to end of content
-      let adsEndWrapper = document.createElement('div'),
-        adsEnd = document.createElement('div'),
-        scriptEnd = document.createElement('script');
-      adsEndWrapper.className = 'adsEndWrapper';
-      scriptEnd.src = `https://jsc.mgid.com/n/b/${process.env.MGID_END_CONTENT_SRC}.js`;
-      scriptEnd.async = true;
-      adsEnd.id = process.env.MGID_END_CONTENT_ID;
-      adsEndWrapper.appendChild(adsEnd);
-      adsEndWrapper.appendChild(scriptEnd);
+  //       adsWrapper.className = 'adsWrapper';
+  //       script.src = `https://jsc.mgid.com/n/b/${process.env.MGID_IN_CONTENT_SRC}.js`;
+  //       script.async = true;
+  //       ads.id = process.env.MGID_IN_CONTENT_ID;
+  //       adsWrapper.appendChild(ads);
+  //       adsWrapper.appendChild(script);
+  //       contentWrapper.insertBefore(adsWrapper, contentWrapper.childNodes[num]);
+  //     });
+  //   }
+  //   if (process.env.MGID_END_CONTENT_ID != undefined) {
+  //     // Insert ads to end of content
+  //     let adsEndWrapper = document.createElement('div'),
+  //       adsEnd = document.createElement('div'),
+  //       scriptEnd = document.createElement('script');
+  //     adsEndWrapper.className = 'adsEndWrapper';
+  //     scriptEnd.src = `https://jsc.mgid.com/n/b/${process.env.MGID_END_CONTENT_SRC}.js`;
+  //     scriptEnd.async = true;
+  //     adsEnd.id = process.env.MGID_END_CONTENT_ID;
+  //     adsEndWrapper.appendChild(adsEnd);
+  //     adsEndWrapper.appendChild(scriptEnd);
 
-      document.querySelectorAll('.adsEndWrapper').forEach((el) => {
-        el.remove();
-      });
+  //     document.querySelectorAll('.adsEndWrapper').forEach((el) => {
+  //       el.remove();
+  //     });
 
-      document.getElementById('adsEndWrapper').append(adsEndWrapper);
-    }
-  });
+  //     document.getElementById('adsEndWrapper').append(adsEndWrapper);
+  //   }
+  // });
 
   return (
     <Layout>
@@ -171,7 +171,7 @@ export default function Post({ post, related }) {
                 {relatedPostsTitle.name ? (
                   <span>
                     More from{' '}
-                    <Link href={relatedPostsTitle.link}>
+                    <Link legacyBehavior href={relatedPostsTitle.link}>
                       <a>{relatedPostsTitle.name}</a>
                     </Link>
                   </span>
@@ -181,7 +181,7 @@ export default function Post({ post, related }) {
                 <ul>
                   {relatedPostsList.map((post) => (
                     <li key={post.title}>
-                      <Link href={postPathBySlug(post.slug)}>
+                      <Link legacyBehavior href={postPathBySlug(post.slug)}>
                         <a>{post.title}</a>
                       </Link>
                     </li>
@@ -203,7 +203,7 @@ export async function getServerSideProps(context) {
   if (referral?.includes('facebook.com')) {
     // On the server, we'll use an HTTP response to
     // redirect with the status code of our choice.
-    // 307 is for temporary redirects...
+    // 307 is for temporary redirects.
     const targetURL = `${process.env.WORDPRESS_REDIRECT_DOMAIN}/${encodeURIComponent(context.params.slug)}/`;
     context.res.writeHead(307, { Location: targetURL });
     context.res.end();

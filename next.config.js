@@ -40,6 +40,31 @@ module.exports = withPlugins([[indexSearch], [feed], [sitemap]], {
   },
 });
 
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'x-hello',
+            value: 'there',
+          },
+        ],
+      },
+      {
+        source: '/hello',
+        headers: [
+          {
+            key: 'x-hello',
+            value: 'world',
+          },
+        ],
+      },
+    ]
+  },
+}
+
 /**
  * parseEnv
  * @description Helper function to check if a variable is defined and parse booelans
@@ -51,3 +76,12 @@ function parseEnvValue(value, defaultValue) {
   if (value === false || value === 'false') return false;
   return value;
 }
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+};
+
+module.exports = nextConfig;

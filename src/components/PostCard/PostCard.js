@@ -37,7 +37,7 @@ const PostCard = ({ post, options = {} }) => {
 
   return (
     <div className={postCardStyle}>
-      <Link href={postPathBySlug(slug)}>
+      <Link legacyBehavior href={postPathBySlug(slug)}>
         <a>
           {isSticky && <FaMapPin aria-label="Sticky Post" />}
           {metadata.featuredImage && (
@@ -49,7 +49,7 @@ const PostCard = ({ post, options = {} }) => {
           )}
         </a>
       </Link>
-      <Link href={postPathBySlug(slug)}>
+      <Link legacyBehavior href={postPathBySlug(slug)}>
         <a>
           <h3
             className={styles.postCardTitle}
